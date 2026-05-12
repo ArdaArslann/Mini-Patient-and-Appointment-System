@@ -31,3 +31,22 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Secrets & Local Config ###
+# Gerçek şifreleri ve API key'lerini içeren yerel config dosyaları
+**/application-local.properties
+**/application-local.yml
+**/application-secrets.properties
+**/application-secrets.yml
+
+# Environment değişken dosyaları
+.env
+.env.local
+.env.*.local
+
+# Sertifika ve anahtar dosyaları
+*.pem
+*.key
+*.p12
+*.jks
+*.keystore
