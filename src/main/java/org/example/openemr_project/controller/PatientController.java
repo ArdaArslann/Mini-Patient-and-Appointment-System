@@ -21,6 +21,12 @@ public class PatientController {
         return patientRepository.findAll();
     }
 
+    // Hasta ara (GET /api/patients/search?keyword=...)
+    @GetMapping("/search")
+    public List<Patient> searchPatients(@RequestParam String keyword) {
+        return patientRepository.search(keyword);
+    }
+
     // Yeni hasta ekle (POST /api/patients)
     @PostMapping
     public Patient createPatient(@RequestBody Patient patient) {
