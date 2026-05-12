@@ -1,4 +1,4 @@
-# OpenEMR Project
+# Mini Patient and Appointment System Project
 
 A simple patient and appointment management application built with Spring Boot + React (Vite).
 
