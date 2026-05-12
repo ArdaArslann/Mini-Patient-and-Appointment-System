@@ -19,6 +19,12 @@ public class AppointmentController {
         return appointmentRepository.findAll();
     }
 
+    // Randevu ara
+    @GetMapping("/search")
+    public List<Appointment> search(@RequestParam String keyword) {
+        return appointmentRepository.search(keyword);
+    }
+
     @PostMapping
     public Appointment create(@RequestBody Appointment appointment) {
         return appointmentRepository.save(appointment);
@@ -37,6 +43,7 @@ public class AppointmentController {
                 .orElseThrow(() -> new RuntimeException("Randevu bulunamadı: " + id));
 
         appt.setPatientId(details.getPatientId());
+        appt.setDoctorId(details.getDoctorId());
         appt.setAppointmentDate(details.getAppointmentDate());
         appt.setReason(details.getReason());
 

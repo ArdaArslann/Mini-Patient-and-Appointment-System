@@ -2,12 +2,11 @@ package org.example.openemr_project.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDate;
 
 @Entity
-@Table(name = "app_patients")
+@Table(name = "app_doctors")
 @Data
-public class Patient {
+public class Doctor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,12 +19,9 @@ public class Patient {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "date_of_birth")
-    private LocalDate dateOfBirth;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
-    @Column(name = "address")
-    private String address;
+    @Column(name = "polyclinic_id")
+    private Long polyclinicId;
 }
