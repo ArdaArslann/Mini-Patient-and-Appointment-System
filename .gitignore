@@ -50,3 +50,6 @@ build/
 *.p12
 *.jks
 *.keystore
+
+### macOS ###
+.DS_Store
