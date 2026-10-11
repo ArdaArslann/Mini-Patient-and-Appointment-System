@@ -15,31 +15,31 @@ public class DoctorController {
     @Autowired
     private DoctorRepository doctorRepository;
 
-    // Tüm doktorları getir
+    // Get all doctors
     @GetMapping
     public List<Doctor> getAll() {
         return doctorRepository.findAll();
     }
 
-    // Poliklinik bazlı doktorları getir
+    // Get doctors by polyclinic
     @GetMapping("/by-polyclinic/{polyclinicId}")
     public List<Doctor> getByPolyclinic(@PathVariable Long polyclinicId) {
         return doctorRepository.findByPolyclinicId(polyclinicId);
     }
 
-    // Doktor ara
+    // Search doctors
     @GetMapping("/search")
     public List<Doctor> search(@RequestParam String keyword) {
         return doctorRepository.search(keyword);
     }
 
-    // Yeni doktor ekle
+    // Create doctor
     @PostMapping
     public Doctor create(@RequestBody Doctor doctor) {
         return doctorRepository.save(doctor);
     }
 
-    // Doktor güncelle
+    // Update doctor
     @PutMapping("/{id}")
     public Doctor update(@PathVariable Long id, @RequestBody Doctor details) {
         Doctor doctor = doctorRepository.findById(id)
@@ -51,7 +51,7 @@ public class DoctorController {
         return doctorRepository.save(doctor);
     }
 
-    // Doktor sil
+    // Delete doctor
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id) {
         doctorRepository.deleteById(id);

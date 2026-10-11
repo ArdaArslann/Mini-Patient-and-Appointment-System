@@ -15,25 +15,25 @@ public class PolyclinicController {
     @Autowired
     private PolyclinicRepository polyclinicRepository;
 
-    // Tüm poliklinikleri getir
+    // Get all polyclinics
     @GetMapping
     public List<Polyclinic> getAll() {
         return polyclinicRepository.findAll();
     }
 
-    // Poliklinik ara
+    // Search polyclinics
     @GetMapping("/search")
     public List<Polyclinic> search(@RequestParam String keyword) {
         return polyclinicRepository.search(keyword);
     }
 
-    // Yeni poliklinik ekle
+    // Create polyclinic
     @PostMapping
     public Polyclinic create(@RequestBody Polyclinic polyclinic) {
         return polyclinicRepository.save(polyclinic);
     }
 
-    // Poliklinik güncelle
+    // Update polyclinic
     @PutMapping("/{id}")
     public Polyclinic update(@PathVariable Long id, @RequestBody Polyclinic details) {
         Polyclinic polyclinic = polyclinicRepository.findById(id)
@@ -43,7 +43,7 @@ public class PolyclinicController {
         return polyclinicRepository.save(polyclinic);
     }
 
-    // Poliklinik sil
+    // Delete polyclinic
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id) {
         polyclinicRepository.deleteById(id);

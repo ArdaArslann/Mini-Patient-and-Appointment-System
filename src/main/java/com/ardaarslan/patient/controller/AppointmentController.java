@@ -19,7 +19,7 @@ public class AppointmentController {
         return appointmentRepository.findAll();
     }
 
-    // Randevu ara
+    // Search appointments
     @GetMapping("/search")
     public List<Appointment> search(@RequestParam String keyword) {
         return appointmentRepository.search(keyword);
@@ -36,7 +36,7 @@ public class AppointmentController {
         return "Randevu başarıyla silindi.";
     }
 
-    // Randevu Güncelle (PUT /api/appointments/{id})
+    // Update appointment (PUT /api/appointments/{id})
     @PutMapping("/{id}")
     public Appointment updateAppointment(@PathVariable Long id, @RequestBody Appointment details) {
         Appointment appt = appointmentRepository.findById(id)

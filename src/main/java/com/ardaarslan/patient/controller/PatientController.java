@@ -15,43 +15,43 @@ public class PatientController {
     @Autowired
     private PatientRepository patientRepository;
 
-    // Tüm hastaları getir (GET /api/patients)
+    // Get all patients (GET /api/patients)
     @GetMapping
     public List<Patient> getAllPatients() {
         return patientRepository.findAll();
     }
 
-    // Hasta ara (GET /api/patients/search?keyword=...)
+    // Search patients (GET /api/patients/search?keyword=...)
     @GetMapping("/search")
     public List<Patient> searchPatients(@RequestParam String keyword) {
         return patientRepository.search(keyword);
     }
 
-    // Yeni hasta ekle (POST /api/patients)
+    // Create patient (POST /api/patients)
     @PostMapping
     public Patient createPatient(@RequestBody Patient patient) {
         return patientRepository.save(patient);
     }
 
-    // Hasta Güncelle (PUT /api/patients/{id})
+    // Update patient (PUT /api/patients/{id})
     @PutMapping("/{id}")
     public Patient updatePatient(@PathVariable Long id, @RequestBody Patient patientDetails) {
-        // Önce hastayı veritabanında buluyoruz
+        // Look up the existing patient
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Hasta bulunamadı: " + id));
 
-        // Yeni gelen verileri mevcut hastaya set ediyoruz
+        // Copy the incoming fields onto it
         patient.setFirstName(patientDetails.getFirstName());
         patient.setLastName(patientDetails.getLastName());
         patient.setDateOfBirth(patientDetails.getDateOfBirth());
         patient.setPhoneNumber(patientDetails.getPhoneNumber());
         patient.setAddress(patientDetails.getAddress());
 
-        // Güncellenmiş haliyle kaydediyoruz
+        // Save the updated patient
         return patientRepository.save(patient);
     }
 
-    // Hasta Sil (DELETE /api/patients/{id})
+    // Delete patient (DELETE /api/patients/{id})
     @DeleteMapping("/{id}")
     public String deletePatient(@PathVariable Long id) {
         patientRepository.deleteById(id);

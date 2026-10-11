@@ -319,7 +319,7 @@ function App() {
         ))}
       </div>
 
-      {/* ═══════════ TAB: HASTALAR ═══════════ */}
+      {/* ═══════════ TAB: PATIENTS ═══════════ */}
       {activeTab === 'patients' && (
         <div style={{ display: 'flex', gap: '20px' }}>
           {/* FORM */}
@@ -379,7 +379,7 @@ function App() {
         </div>
       )}
 
-      {/* ═══════════ TAB: RANDEVULAR ═══════════ */}
+      {/* ═══════════ TAB: APPOINTMENTS ═══════════ */}
       {activeTab === 'appointments' && (
         <div style={{ display: 'flex', gap: '20px' }}>
           {/* FORM */}
@@ -469,7 +469,7 @@ function App() {
         </div>
       )}
 
-      {/* ═══════════ TAB: POLİKLİNİK & DOKTORLAR ═══════════ */}
+      {/* ═══════════ TAB: POLYCLINICS & DOCTORS ═══════════ */}
       {activeTab === 'directory' && (
         <div>
           {polyclinics.length === 0 ? (

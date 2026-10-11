@@ -20,12 +20,12 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Eğer zaten veri varsa tekrar ekleme
+        // Skip seeding if data already exists
         if (polyclinicRepository.count() > 0) {
             return;
         }
 
-        // Poliklinikler
+        // Polyclinics
         Polyclinic dahiliye = createPolyclinic("Dahiliye", "İç hastalıkları polikliniği");
         Polyclinic kardiyoloji = createPolyclinic("Kardiyoloji", "Kalp ve damar hastalıkları polikliniği");
         Polyclinic ortopedi = createPolyclinic("Ortopedi", "Kemik ve eklem hastalıkları polikliniği");
@@ -35,7 +35,7 @@ public class DataSeeder implements CommandLineRunner {
         Polyclinic kbb = createPolyclinic("KBB", "Kulak burun boğaz hastalıkları polikliniği");
         Polyclinic goz = createPolyclinic("Göz Hastalıkları", "Göz hastalıkları polikliniği");
 
-        // Doktorlar
+        // Doctors
         createDoctor("Ahmet", "Yılmaz", "Prof. Dr.", dahiliye.getId());
         createDoctor("Fatma", "Demir", "Doç. Dr.", dahiliye.getId());
         createDoctor("Mehmet", "Kaya", "Prof. Dr.", kardiyoloji.getId());

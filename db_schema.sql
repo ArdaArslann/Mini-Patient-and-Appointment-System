@@ -1,5 +1,5 @@
--- Mini Hasta ve Randevu Yönetim Sistemi — Veritabanı Şeması
--- Bu dosyayı çalıştırmak için:
+-- Mini Patient and Appointment System — database schema
+-- To apply it:
 -- docker exec -i openemr-mysql mysql -uroot -proot < db_schema.sql
 
 CREATE DATABASE IF NOT EXISTS openemr
@@ -8,7 +8,7 @@ CREATE DATABASE IF NOT EXISTS openemr
 
 USE openemr;
 
--- Poliklinikler
+-- Polyclinics
 CREATE TABLE IF NOT EXISTS app_polyclinics (
   id BIGINT NOT NULL AUTO_INCREMENT,
   name VARCHAR(100),
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS app_polyclinics (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_turkish_ci;
 
--- Doktorlar
+-- Doctors
 CREATE TABLE IF NOT EXISTS app_doctors (
   id BIGINT NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(100),
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS app_doctors (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_turkish_ci;
 
--- Hastalar
+-- Patients
 CREATE TABLE IF NOT EXISTS app_patients (
   id BIGINT NOT NULL AUTO_INCREMENT,
   first_name VARCHAR(100),
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS app_patients (
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_turkish_ci;
 
--- Randevular
+-- Appointments
 CREATE TABLE IF NOT EXISTS app_appointments (
   id BIGINT NOT NULL AUTO_INCREMENT,
   patient_id BIGINT NOT NULL,
