@@ -11,7 +11,7 @@ A simple patient and appointment management application built with Spring Boot +
 
 ## Project Structure
 
-- Backend: src/main/java/org/example/openemr_project
+- Backend: src/main/java/com/ardaarslan/patient
 - Frontend: frontend
 - Docker Compose: docker-compose.yml
 - Make commands: Makefile
@@ -62,15 +62,30 @@ Remove containers and volumes:
 make clean
 ```
 
-### Docker MySQL Configuration
+`make up` starts two containers (see `docker-compose.yml`):
 
-- Host: localhost
-- Port: 3333
-- Database: openemr
-- User: root
-- Password: 123456
+| Service | URL / Port | Credentials (local dev only) |
+|---------|------------|------------------------------|
+| MySQL   | localhost:3333, database `openemr` | `openemr` / `openemr` (root: `root`) |
+| OpenEMR | http://localhost:8080 | `admin` / `admin` |
 
-These settings match src/main/resources/application.properties.
+## Configuration
+
+`src/main/resources/application.properties` only contains `CHANGE_ME` placeholders — no real
+credentials are committed. Put your local values in
+`src/main/resources/application-local.properties` (git-ignored, loaded automatically via
+`spring.profiles.include=local`):
+
+```properties
+spring.datasource.username=CHANGE_ME
+spring.datasource.password=CHANGE_ME
+
+# Register an API client in OpenEMR (Administration → System → API Clients)
+openemr.client-id=CHANGE_ME
+openemr.client-secret=CHANGE_ME
+openemr.username=CHANGE_ME
+openemr.password=CHANGE_ME
+```
 
 ## Run the Backend
 
@@ -86,7 +101,7 @@ Alternative:
 mvn spring-boot:run
 ```
 
-The backend runs on port 8080 by default.
+The backend runs on port 8081 (port 8080 is used by OpenEMR).
 
 ## Run the Frontend
 
@@ -119,9 +134,10 @@ The frontend runs on port 5173 by default.
 ## Quick Start
 
 1. make up
-2. ./mvnw spring-boot:run
-3. cd frontend && npm install && npm run dev
-4. Open the frontend in your browser: http://localhost:5173
+2. Create `application-local.properties` (see Configuration)
+3. ./mvnw spring-boot:run
+4. cd frontend && npm install && npm run dev
+5. Open the frontend in your browser: http://localhost:5173
 
 ## Development Notes
 

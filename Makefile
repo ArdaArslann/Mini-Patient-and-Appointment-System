@@ -20,7 +20,7 @@ ps:
 status: ps
 
 shell:
-	$(COMPOSE) exec $(SERVICE) mysql -uroot -p123456 openemr
+	$(COMPOSE) exec $(SERVICE) mysql -uroot -proot openemr
 
 clean:
 	$(COMPOSE) down -v
